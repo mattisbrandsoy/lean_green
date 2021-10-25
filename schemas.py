@@ -1,4 +1,11 @@
 from pydantic import BaseModel
 
-class Vessel(BaseModel):
+class VesselCreate(BaseModel):
   name: str
+
+class Vessel(BaseModel):
+  id: int
+  name: str
+
+  class Config:
+    orm_mode = True
