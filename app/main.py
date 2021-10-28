@@ -1,25 +1,25 @@
-from fastapi import FastAPI, Depends
-from database import Base, engine
+import uvicorn
+from fastapi import FastAPI
 
-# from routers import vessels
-
-Base.metadata.create_all(engine)
-
-
-app = FastAPI(title="Lean and Green API platform", openapi_url="/openapi.json")
-
-# app.include_router(vessels.router)
+from app.core.config import settings
+from app.api.api_v1.api import api_router
+from app.db.session import engine
+from app.db.base import Base
 
 
-@app.get("/")
-def root() -> dict:
-    """
-    Root Get
-    """
-    return {"msg": "I am ROOT"}
+def create_tables():
+    Base.metadata.create_all(bind=engine)
 
-    if __name__ == "__main__":
-        # For debugging
-        import uvicorn
 
-        uvicorn.run(app, host="0.0.0.0", port="8001", log_level="debug")
+def start_application():
+    app = FastAPI(
+        title=settings.PROJECT_NAME,
+        version=settings.PROJECT_VERSION,
+        openapi_url="/openapi.json",
+    )
+    app.include_router(api_router)
+    create_tables()
+    return app
+
+
+app = start_application()

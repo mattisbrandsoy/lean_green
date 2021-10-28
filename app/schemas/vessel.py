@@ -1,13 +1,17 @@
+from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel
 
 
-class VesselCreate(BaseModel):
+class VesselBase(BaseModel):
     name: str
+    date_created: Optional[datetime] = None
+    is_active: bool
 
+class VesselCreate(VesselBase):
+    pass
 
-class Vessel(BaseModel):
+class Vessel(VesselBase):
     id: int
-    name: str
-
     class Config:
         orm_mode = True
