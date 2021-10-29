@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 # SQLITE Dev DB
+.database.db
 database.db
