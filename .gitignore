@@ -131,3 +131,4 @@ dmypy.json
 # SQLITE Dev DB
 .database.db
 database.db
+db.sqlite3

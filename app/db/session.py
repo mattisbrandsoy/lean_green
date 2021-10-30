@@ -9,7 +9,7 @@ from app.core.config import settings
 # engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 # CONNECT TO SQLITE
-SQLALCHEMY_DATABASE_URI = "sqlite:///./database.db"
+SQLALCHEMY_DATABASE_URI = "sqlite:///./app/db.sqlite3"
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True, future=True, connect_args={"check_same_thread": False})
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
