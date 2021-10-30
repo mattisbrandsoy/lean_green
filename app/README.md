@@ -1,2 +1,0 @@
-# lean_green
-FastAPI
